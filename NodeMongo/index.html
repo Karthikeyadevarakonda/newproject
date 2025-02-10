@@ -1,0 +1,814 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <script src="https://cdn.tailwindcss.com"></script>
+
+
+    <style>
+             *{
+    margin: 0px;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    width: 100%;
+    background-color: rgba(211, 211, 211, 0.188);
+}
+
+        #check:checked ~ #menu{
+            display: block;
+            left: 0%;
+            width: 100%;
+        }
+     
+.image{
+    padding-top: 10px;
+    margin: auto;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+}
+.fa-star{
+    color: green;
+}
+.fa-clock{
+    color: red;
+}
+.fetchtext{
+    background-image: linear-gradient(to right, #2bd271 ,rgb(207, 105, 105));
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+}
+.copyright{
+    background-image: linear-gradient(to right, #2bd271 ,rgb(207, 105, 105));
+            color: transparent;
+            background-clip: text;
+            -webkit-background-clip: text;
+}
+#searchBar{
+    padding-top: 2px;
+}
+#searchBar::placeholder{
+   font-size: 14px;
+   width: 130%;
+}
+.custom-scrollbar::-webkit-scrollbar{
+    height: 5px;
+}
+
+
+@keyframes fall {
+    0%{
+        transform:translateY(-100vh);
+         opacity: 0;
+    }
+    50%{
+        transform:translateY(20px);
+         opacity: 0.5;
+    }
+    100%{
+        transform:translateY(0);
+         opacity: 1;
+    }
+   
+}
+
+.animate-fall{
+    animation: fall 1s ease-out forwards;
+}
+.slide{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    transition: opacity 0.5s ease-in-out;
+    animation : box-1-slide-in  1s cubic-bezier(0.2, 1, 1, 1) forwards;
+}
+@keyframes box-1-slide-in {
+    from{
+       transform: translateX(50vw);
+    }
+    to{
+        transform:translateX(0);
+    }
+  }
+.fa-fire{
+    color: orange;
+}
+
+#container{
+    display: none;
+}  
+#homepage{
+    display:block;
+}
+#about{
+    display: none;
+}
+#profilePage{
+    display: none;
+}
+#virtualcardsdiv{
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.608), rgba(255, 255, 255, 0.5));
+    background-color: transparent;
+    box-shadow: 0 4px 8px 10px rgba(238, 235, 235, 0.15); 
+    border-radius: 4px;
+}
+
+.fa-percent{
+    color: rgb(86, 146, 231);
+}
+.fa-sliders{
+    font-size: 15px;
+}
+.fa-arrow-up-long{
+    color: rgb(153, 255, 0);
+}
+
+.A{
+    position: sticky;
+    top: 80px;
+    z-index: 10;
+    left: 0;
+    background-color:#ffffffe8;
+}
+
+@media screen and (max-width: 630px) {
+
+ .A{
+    position: sticky;
+    top: 80px;
+    z-index: 9;
+    left: 0;
+    background-color:#ffffffe8;
+}
+#searchBar::placeholder{
+   font-size: 10px;
+   width: 80%;
+   
+}
+#searchBar{
+    padding-top: 0px;
+    padding-bottom: 2px;
+}
+}
+
+    </style>
+</head>
+
+
+<body >
+
+<div id="body">
+
+    <nav class="z-10 fixed h-20 w-full bg-slate-100 shadow">
+       <div class="leading-[80px]">
+         <input type="checkbox" id="check" class="hidden">
+
+        <label for="check" class="text-lg float-right leading-[80px] mr-6 sm:mr-10 block sm:hidden">
+            <i class="fas fa-bars"></i>
+        </label>
+
+            <span class="absolute  bottom-[1px] sm:bottom-0  left-0 w-24 sm:w-28 border">
+               <img src="./chinnakka_cutout.png" alt="" class="mt-2" >
+            </span>
+
+        <button class="ml-24" id="homelink" ><span class="font-bold underline text-xs sm:text-sm">GoHome  <span class="text-green-600" ><i class="fa-solid fa-angle-down"></i></span></span></button>
+        <label for="searchBar" class="text-xs sm:text-sm absolute left-[179px] sm:left-[345px] top-[42px] sm:top-[41px] transform -translate-y-1/2 text-gray-500 z-10 pointer-events-none"><i class="fa-solid fa-magnifying-glass"></i></label>
+        <input type="text" class="search-bar sm:text-xs w-36 sm:w-[300px] pl-8 sm:pl-10 outline-0 h-[28px] sm:h-[38px] ml-2 sm:ml-40 text-slate-900 truncate border rounded " id="searchBar" placeholder="Search for Chicken">
+        <ul id="menu" class="navBar pt-10 sm:pt-0 fixed sm:static left-[-100%] sm:left-0 h-screen transition-all duration-300 ease-in-out bg-slate-800 sm:bg-slate-100 sm:float-right sm:mr-10 sm:h-full sm:block hidden">
+            <li class="block sm:inline-block leading-[80px] mx-1 sm:mx-3 text-center "><a href="javascript:void(0);" id="signinbtn" class="text-lg sm:text-base text-white sm:text-stone-800 hover:text-amber-500 px-4 py-2  rounded-md hover:bg-white transition-all duration-75"><i class="fa-regular fa-user"></i> Profile</a></li>
+            <li class="block sm:inline-block leading-[80px] mx-1 sm:mx-3 text-center "><a href="javascript:void(0);" id="offerlink" class="text-lg sm:text-base text-white sm:text-stone-800 hover:text-amber-500 px-4 py-2  rounded-md hover:bg-white transition-all duration-75"><i class="fa-solid fa-tag"></i>Offer</a></li>
+            <li class="block sm:inline-block leading-[80px] mx-1 sm:mx-3 text-center "><a href="#" id="all" class="text-lg sm:text-base text-white sm:text-stone-800 hover:text-amber-500 px-4 py-2  rounded-md hover:bg-white transition-all duration-75"><i class="fa-solid fa-layer-group"></i> foods</a></li>
+            <li class="block sm:inline-block leading-[80px] mx-1 sm:mx-3 text-center "><a href="javascript:void(0);" id="aboutlink" class="text-lg sm:text-base text-white sm:text-stone-800 hover:text-amber-500 px-4 py-2  rounded-md hover:bg-white transition-all duration-75"><i class="fa-regular fa-handshake"></i>About</a></li>
+            <li class="block sm:inline-block leading-[80px] mx-1 sm:mx-3 text-center "><a href="#" id="cart" class="text-lg sm:text-base text-white sm:text-stone-800 hover:text-amber-500 px-4 py-2  rounded-md hover:bg-white transition-all duration-75"><i class="fa-sharp fa-solid fa-cart-shopping"></i>Cart</a></li>
+        </ul>
+     </div>
+    </nav>
+    <main id="main" class="pt-20">
+         <div id="homepage">
+          <div class="m-auto p-2 sm:p-0 sm:w-4/6">
+            <h1 class="font-bold text-sm sm:text-3xl mt-5 sm:mt-10 ml-5 text-slate-900 tracking-wide"> <span class="taste text-xl sm:text-4xl"><i class="fa-solid fa-bell-concierge"></i> Taste</span>  the Best of Your City, Delivered to Your Door.</h1>
+            <h1 id="title-text" class="mb-5 sm:mb-10  ml-5 sm:ml-8  text-sm sm:text-lg text-slate-400 "></h1>
+          </div>
+          <div class="w-full sm:w-11/12 h-44 sm:h-96 m-auto overflow-hidden relative" id="slides">
+            <img src="" class="" alt="">
+          </div>
+          <h1 class="font-bold text-sm sm:text-3xl mt-5 sm:mt-10 ml-5 text-slate-900 tracking-wide"> <span class="text-amber-500"><i class="fa-solid fa-utensils"></i></span> Restaurants with online food delivery in Nellore</h1>
+        <div class="p-5 sm:p-10 mt-5 mb-4 sm:mt-5 flex overflow-x-auto space-x-4 custom-scrollbar relative">
+          <img src="./8840238.jpg" alt="" class="w-1/4 h-30 sm:h-72 rounded-lg">
+          <img src="./11948.jpg"   alt="" class="w-1/4 h-30 sm:h-72 rounded-lg">
+          <img src="./5045320.jpg" alt="" class="w-1/4 h-30 sm:h-72 rounded-lg">
+          <img src="./8381321.jpg" alt="" class="w-1/4 h-30 sm:h-72 rounded-lg">
+          <img src="./8840238.jpg" alt="" class="w-1/4 h-30 sm:h-72 rounded-lg">
+          <img src="./11948.jpg"   alt="" class="w-1/4 h-30 sm:h-72 rounded-lg">
+          <img src="./5045320.jpg" alt="" class="w-1/4 h-30 sm:h-72 rounded-lg">
+          <img src="./8381321.jpg" alt="" class="w-1/4 h-30 sm:h-72 rounded-lg">
+        </div>
+
+        <div class="A shadow sm:h-24 sm:h-14 h-20 pt-2">
+           <h1 class="font-bold text-sm sm:text-xl sm:ml-10 ml-5 sm:pt-2"><i class="fa-solid fa-sliders"></i> Filter by</h1>
+           <div class="flex sm:gap-4 gap-5 absolute left-8 sm:bottom-4 bottom-4">
+            <p  id="topRatedBtn" class="border shadow rounded-md sm:px-2 py-1 sm:text-lg text-sm px-1.5 cursor-pointer"><i class="fa-solid fa-fire"></i> Top-Rated</p>
+            <p  id="LowCostBtn" class="border shadow rounded-md sm:px-2 py-1 sm:text-lg text-sm px-1.5 cursor-pointer"><i class="fa-solid fa-percent"></i> Low-Cost</p>
+            <p  id="Above500Btn" class="border shadow rounded-md sm:px-2 py-1 sm:text-lg text-sm px-1.5 cursor-pointer"><i class="fa-solid fa-arrow-up-long"></i> Above-500</p>
+           </div>
+        </div>
+
+
+        <div>
+            <h1 class="mt-10 sm:mt-4 font-bold text-sm sm:text-3xl sm:ml-20 ml-5 relative bottom-5 sm:top-5"><i class="fa-regular fa-clock"></i> What's on your mind?</h1>
+        </div>
+        <div id="virtualCards" class="overflow-hidden w-5/7 sm:h-96 h-44 p-2 sm:p-20 gap-2  flex flex-wrap m-auto justify-evenly">
+        
+        
+        </div>
+    <div id="virtualcardsdiv" class="relative bottom-12 sm:bottom-28 w-5/6 sm:w-[1105px] h-12 sm:h-32 m-auto">
+        <button id="viewMore" class="relative sm:left-[460px] left-28 top-8 sm:top-24 rounded-md text-sm sm:text-lg font-bold bg-green-400 p-2 text-white">VIEW MORE</button>
+    </div>
+        <div class="mb-2 sm:mb-8">
+            <h1 class="font-bold text-lg sm:text-3xl ml-5 sm:ml-20 mb-5 sm:mb-10"><span class="text-blue-400"><i class="fa-solid fa-hotel"></i></span> Best Places to Eat Across Cities</h1>
+            <div class="w-screen sm:w-9/12 m-auto p-2 sm:p-0">
+                <div class="flex justify-evenly mb-8 ml-2 sm:ml-0 gap-2 sm:gap-0">
+                    <p class="border-2 border-gray-300 p-1 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In Bangalore</p>
+                    <p class="border-2 border-gray-300 p-1 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In Pune</p>
+                    <p class="border-2 border-gray-300 p-1 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In Mumbai</p>
+                </div>
+                <div class="flex justify-evenly mb-8 gap-2 sm:gap-0">
+                    <p class="border-2 border-gray-300 p-2 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In Chennai</p>
+                    <p class="border-2 border-gray-300 p-2 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In Goa</p>
+                    <p class="border-2 border-gray-300 p-2 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In delhi</p>
+                </div>
+                <div class="flex justify-evenly mb-8 gap-2 sm:gap-0">
+                    <p class="border-2 border-gray-300 p-2 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In Haryana</p>
+                    <p class="border-2 border-gray-300 p-2 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In Kerala</p>
+                    <p class="border-2 border-gray-300 p-2 sm:p-4 rounded-lg text-xs sm:text-lg font-bold text-slate-500">Best Restaurants In Kochi</p>
+                </div>
+            </div>
+        </div>
+        <div class="bg-gray-200  h-20 p-4">
+            <div class="flex w-1/2 sm:w-1/4 m-auto ">
+                <span class="sm:top-4 sm:left-5 top-5 left-6">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 61 61" class="mr-2 sm:w-12 sm:h-8 w-6 h-6">
+                        <path fill="#2bd271" d="M.32 30.5c0-12.966 0-19.446 3.498-23.868a16.086 16.086 0 0 1 2.634-2.634C10.868.5 17.354.5 30.32.5s19.446 0 23.868 3.498c.978.774 1.86 1.656 2.634 2.634C60.32 11.048 60.32 17.534 60.32 30.5s0 19.446-3.498 23.868a16.086 16.086 0 0 1-2.634 2.634C49.772 60.5 43.286 60.5 30.32 60.5s-19.446 0-23.868-3.498a16.086 16.086 0 0 1-2.634-2.634C.32 49.952.32 43.466.32 30.5Z"/>
+                        <path fill="#fff" fill-rule="evenodd" d="M32.317 24.065v-6.216a.735.735 0 0 0-.732-.732.735.735 0 0 0-.732.732v7.302c0 .414.336.744.744.744h.714c10.374 0 11.454.54 10.806 2.73-.03.108-.066.21-.102.324-.006.024-.012.048-.018.066-2.724 8.214-10.092 18.492-12.27 21.432a.764.764 0 0 1-1.23 0c-1.314-1.776-4.53-6.24-7.464-11.304-.198-.462-.294-1.542 2.964-1.542h3.984c.222 0 .402.18.402.402v3.216c0 .384.282.738.666.768a.73.73 0 0 0 .582-.216.701.701 0 0 0 .216-.516v-4.362a.76.76 0 0 0-.756-.756h-8.052c-1.404 0-2.256-1.2-2.814-2.292-1.752-3.672-3.006-7.296-3.006-10.152 0-7.314 5.832-13.896 13.884-13.896 7.17 0 12.6 5.214 13.704 11.52.006.054.048.294.054.342.288 3.096-7.788 2.742-11.184 2.76a.357.357 0 0 1-.36-.36v.006Z" clip-rule="evenodd"></path>
+                    </svg>
+                </span>
+                
+                </span>
+               <h1 class="copyright text-2xl font-bold ">SNACKZ</h1>
+            </div>
+           
+            <p class="w-1/8 text-center ml-10  sm:mr-10 sm:ml-0 m-auto text-xs sm:text-sm">&copy; 2025 Snackz Limited . All rights reserved.</p>
+             
+           </div>
+         </div>
+
+        </main>
+
+        <div id="container" class="hidden flex flex-wrap justify-evenly md:justify-start gap-x-2 gap-y-4 sm:gap-x-4 m-auto px-1 sm:p-24 pt-10 ">
+
+        </div>
+
+</div>
+
+        <!-- aboutpage -->
+        <div id="about" class="bg-stone-100 hidden">
+        
+            <div class="relative p-20 w-screen bg-white sm:w-1/3 m-auto min-h-screen sm:mt-5 shadow-[0px_4px_6px_2px_rgba(0,0,0,0.1)]">
+                    <button id="aboutBackBtn"  class="absolute right-3 top-3 text-xl sm:text-3xl text-red-400"><i class="fa-regular fa-circle-xmark"></i></button>
+                    <h1 class="font-bold sm:text-2xl relative right-5">About Us</h1>
+                         <div class="mt-5">
+                            <h2 class="font-bold sm:text-xl text-gray-500">
+                                Follow >
+                            </h2>
+                            <p class="pl-5 pt-2 text-sm sm:text-xl text-amber-500">Instagram</p>
+                            <p  class="pl-5 pt-1 text-sm sm:text-xl text-blue-500">LinkedIn</p>
+                         </div>
+                         <div>
+                            <h2 class="font-bold sm:text-xl text-gray-500">
+                             More >
+                            </h2>
+                            <p class="pl-5 pt-2 text-sm sm:text-xl ">Feedback </p>
+                            <p class="pl-5 pt-2 text-sm sm:text-xl ">Privacy Policy</p>
+                            <p class="pl-5 pt-2 text-sm sm:text-xl ">Shipping Policy </p>
+                            <p class="pl-5 pt-2 text-sm sm:text-xl ">Cancellation Policy </p>
+                            <p class="pl-5 pt-2 text-sm sm:text-xl ">Terms & Conditions </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- profilepage -->
+        <div id="profilePage" class="bg-stone-100 hidden">
+            <div class="relative p-20 w-screen bg-white sm:w-1/3 m-auto min-h-screen sm:mt-5 shadow-[0px_4px_6px_2px_rgba(0,0,0,0.1)]">
+                <a class='absolute left-3 top-3 text-xl sm:text-3xl text-blue-400' href='/' onclick='clearStorage()'><i class="fa-solid fa-right-from-bracket"></i><span class="text-xs"> Logout</span></a>
+                <button id="profileBackBtn" class="absolute right-3 top-3 text-xl sm:text-xl text-red-400"><i class="fa-regular fa-circle-xmark"></i></button>
+                 <div id="image" class="">
+                    <img src="./portfoli.pic.jpeg" alt="" class="w-[200px] h-[200px] rounded-full  m-auto">
+                 </div>
+                 <div class="mt-10">
+        
+                    <p class="text-green-400 text-xl">HELLO <span class="text-stone-400"><i class="fa-solid fa-ghost"></i></span></p>
+                    <p id="name" class="text-2xl font-bold"> </p>
+                 </div>
+                 <div class="mt-10">
+                    <h1 class=" text-sm sm:text-2xl text-amber-500">ThankYou For Visting <i class="fa-solid fa-door-open"></i></h1>
+                 </div>
+                </div>
+            
+            </div>
+
+ 
+<script>
+
+
+
+const virtualCards = document.getElementById('virtualCards');
+let dummyArray =[]
+function fetchdataMainPage(){
+   fetch("http://localhost:5000/employees/allemployees")
+    .then((res) => res.json())
+    .then((data) => {
+   
+    newdata = data;
+    MainPageCards(newdata);
+  })
+}
+
+document.addEventListener('DOMContentLoaded',()=>{
+    fetchdataMainPage();
+
+})
+
+function MainPageCards(mainpagedata){
+
+    let list = "";
+
+    mainpagedata.forEach((x) => {
+
+        if(!x.price && !x.originalprice){
+         x.price = (Math.random() * (1000 - 200) + 200).toFixed(2);
+         x.originalprice = (Math.random() * (1000 - 200) + 200).toFixed(2);
+        }
+         let newLabel = '';
+         if(x.price < 500){
+            newLabel = `<div class="new-label absolute top-0 right-0 bg-pink-300 text-white text-xs px-2 py-1 rounded-tr-lg">New</div>`;
+         }  
+
+         const isInCart = cardState[x.name] === "true" ;
+
+
+  list +=`   <div class="card w-[170px] h-[240px]  flex flex-col justify-around relative p-2 rounded-lg bg-white transform transition-transform duration-200 ease-in-out sm:hover:scale-105 shadow">
+       <div class="top sm:w-[150px] sm:h-[150px]" rounded-full">
+         <img class="image sm:w-[150px] sm:h-[150px]" rounded-full" src="${x.image}"/>
+        </div>
+
+        <div class="bottom relative">
+             <h4 class="ratingAndCount text-xs sm:text-base">${x.rating} <i class="fa-solid fa-star"></i> | ${x.reviewCount}</h4>
+             <p class="font-medium truncate">${x.pname}</p>
+              <h5 class="price text-sm">₹${x.discountPrice}
+                 <span class="original-price text-xs text-gray-500 line-through">
+                     ₹${x.originalPrice} </span>
+              </h5>
+            <button class="addtocart text-xs bg-white font-bold absolute right-2 top-[43px] sm:top-[49px] border border-green-300 px-1 py-0.5">ADD</button>
+        </div>
+
+ </div>
+
+`
+});
+
+virtualCards.innerHTML = list;
+}
+
+
+const name = document.getElementById('name')
+const uname = localStorage.getItem('username')
+name.textContent = uname;
+
+   function clearStorage(){
+    localStorage.clear();
+   }
+
+
+const profilePage = document.getElementById('profilePage');
+const profileLink = document.getElementById('signinbtn')
+
+
+profileLink.addEventListener('click',()=>{
+    body.style.display = 'none';
+    profilePage.style.display = 'block';
+})
+
+const profileBackBtn = document.getElementById('profileBackBtn');
+profileBackBtn.addEventListener('click',()=>{
+    body.style.display = 'block';
+    profilePage.style.display = 'none';
+})
+
+
+
+const body = document.getElementById('body');
+const aboutpage = document.getElementById('about');
+const aboutlink = document.getElementById('aboutlink');
+
+aboutlink.addEventListener('click',()=>{
+    body.style.display = 'none';
+    aboutpage.style.display = 'block';
+})
+
+const aboutBackBtn = document.getElementById('aboutBackBtn');
+aboutBackBtn.addEventListener('click',()=>{
+    body.style.display = 'block';
+    aboutpage.style.display = 'none';
+})
+
+
+// localStorage.clear();
+ const main = document.getElementById('main');
+ const container = document.getElementById("container");
+ const addtocart = document.getElementById('addtocart');
+ const homepage = document.getElementById('homepage');
+ const offerlink = document.getElementById('offerlink');
+ 
+const cart = document.getElementById('cart');
+
+const searchBar = document.getElementById('searchBar');
+let newdata = [];
+
+
+let cardState = JSON.parse(localStorage.getItem('cartState')) || {};
+
+if(homepage.style.display !=='none'){
+         offerlink.style.pointerEvents = 'none';
+         offerlink.style.opacity = '0.5';
+}
+
+function loadCartState(){
+        document.querySelectorAll('.card').forEach(card=>{
+            const cardName = card.dataset.name;
+            const addButton = card.querySelector('.addtocart');
+
+            if(cardState[cardName]){
+                addButton.innerText ="ADDED"
+                addButton.style.color = "blue"
+                addButton.classList.add('carted');
+            }else{
+                addButton.innerText ="ADD"
+                addButton.style.color = "red"
+                addButton.classList.remove('carted');
+            }
+        })
+    }
+
+ function fetchdata(){
+   fetch("https://dummyjson.com/recipes")
+    .then((res) => res.json())
+    .then((data) => {
+   
+    newdata = data.recipes;
+    display(newdata);
+  })
+}
+
+
+
+
+
+const topRatedBtn = document.getElementById('topRatedBtn')
+const LowCostBtn = document.getElementById('LowCostBtn')
+const Above500Btn = document.getElementById('Above500Btn')
+
+
+topRatedBtn.addEventListener('click',()=>{
+
+    if (!newdata || newdata.length === 0) {
+        fetchdata();  
+    }
+    homepage.style.display = 'none';
+    container.style.display = 'flex';
+
+    let topRatedData = newdata.filter(card => parseFloat(card.rating) > 4.5);
+    display(topRatedData);
+})
+
+LowCostBtn.addEventListener('click',()=>{
+
+if (!newdata || newdata.length === 0) {
+    fetchdata();  
+}
+homepage.style.display = 'none';
+container.style.display = 'flex';
+
+let lowcostData = newdata.filter(card => parseFloat(card.price) < 500);
+display(lowcostData);
+})
+
+Above500Btn.addEventListener('click',()=>{
+
+if (!newdata || newdata.length === 0) {
+    fetchdata();  
+}
+homepage.style.display = 'none';
+container.style.display = 'flex';
+
+let above500data = newdata.filter(card => parseFloat(card.price) > 500);
+display(above500data);
+})
+
+
+function display(filterdata){
+
+    if (!filterdata || filterdata.length === 0) {
+        fetchdata();  
+    }
+
+homepage.style.display = 'none';
+container.style.display = 'flex';
+offerlink.style.pointerEvents = 'auto';
+offerlink.style.opacity = '1';
+
+let k = "";
+
+filterdata.forEach((x) => {
+
+        if(!x.price && !x.originalprice){
+         x.price = (Math.random() * (1000 - 200) + 200).toFixed(2);
+         x.originalprice = (Math.random() * (1000 - 200) + 200).toFixed(2);
+        }
+         let newLabel = '';
+         if(x.price < 500){
+            newLabel = `<div class="new-label absolute top-0 right-0 bg-pink-300 text-white text-xs px-2 py-1 rounded-tr-lg">New</div>`;
+         }  
+
+         const isInCart = cardState[x.name] === "true" ;
+
+
+  k += `
+     <div class="card w-[170px] h-[240px]  flex flex-col justify-around relative p-2 rounded-lg bg-white transform transition-transform duration-200 ease-in-out sm:hover:scale-105 shadow">
+       <div class="top sm:w-[150px] sm:h-[150px]" rounded-full">
+         <img class="image sm:w-[150px] sm:h-[150px]" rounded-full" src="${x.image}"/>
+        </div>
+
+        <div class="bottom relative">
+             <h4 class="ratingAndCount text-xs sm:text-base">${x.rating} <i class="fa-solid fa-star"></i> | ${x.reviewCount}</h4>
+             <p class="font-medium truncate">${x.pname}</p>
+              <h5 class="price text-sm">₹${x.discountPrice}
+                 <span class="original-price text-xs text-gray-500 line-through">
+                     ₹${x.originalPrice} </span>
+              </h5>
+            <button class="addtocart text-xs bg-white font-bold absolute right-2 top-[43px] sm:top-[49px] border border-green-300 px-1 py-0.5">ADD</button>
+        </div>
+
+ </div>
+
+`
+});
+loadData(()=>{
+    container.innerHTML = k;
+    loadCartState();
+       })
+}
+
+
+
+
+  cart.addEventListener('click',()=>{
+    if(homepage.style.display !=='none'){
+          homepage.style.display ='none'
+          container.style.display ='flex';
+          loadCartState();
+    }
+
+    container.innerHTML ='';
+
+    let cartedCards = newdata.filter(card=> cardState[card.name] === "true")
+    
+    if(cartedCards.length > 0){
+    display(cartedCards);
+   
+    }else{
+        container.innerHTML=`
+<div class="flex flex-col items-center justify-center m-auto relative top-[40px] sm:top-0 animate-fall px-4 sm:px-8">
+    <div class="css-e31m9n ei037z20 mb-6">
+        <span class="css-1aowomc ehes2bo0">
+            <svg xmlns="http://www.w3.org/2000/svg" width="282" height="286" viewBox="0 0 182 186" fill="none">
+                <g clip-path="url(#clip0_3039_24342)">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="182" height="186" viewBox="0 0 182 186" fill="none"><g clip-path="url(#clip0_3039_24342)"><path d="M67.4009 176.307L9.61955 118.526C-3.20961 105.697 -3.20961 84.6433 9.61955 71.7138L67.4009 13.9325C80.2301 1.10332 101.284 1.10332 114.213 13.9325L171.995 71.7138C184.824 84.543 184.824 105.597 171.995 118.526L114.213 176.307C101.284 189.237 80.3304 189.237 67.4009 176.307Z" fill="#FDE3E0"></path><path d="M97.1534 135.613C96.5243 135.54 95.886 135.468 95.2568 135.404C95.3207 136.398 96.3328 147.804 108.104 149.518L108.378 147.658C98.667 146.245 97.3266 137.528 97.1534 135.613Z" fill="#45AAAA"></path><path d="M87.862 168.092L86.8772 166.642C91.2083 163.706 93.2599 159.366 92.9863 153.731C92.7766 149.436 91.2265 145.962 91.2083 145.926L92.804 145.197C92.8678 145.352 99.4602 160.223 87.862 168.092Z" fill="white"></path><path d="M101.676 168.092C103.166 168.092 104.375 166.884 104.375 165.393C104.375 163.903 103.166 162.694 101.676 162.694C100.185 162.694 98.9768 163.903 98.9768 165.393C98.9768 166.884 100.185 168.092 101.676 168.092Z" fill="white"></path><path d="M81.3699 154.916C82.8604 154.916 84.0688 153.708 84.0688 152.217C84.0688 150.727 82.8604 149.518 81.3699 149.518C79.8793 149.518 78.6709 150.727 78.6709 152.217C78.6709 153.708 79.8793 154.916 81.3699 154.916Z" fill="#EC8BB9"></path><path d="M79.724 113.756C81.5821 113.258 82.6349 111.163 82.0756 109.076C81.5163 106.99 79.5566 105.702 77.6986 106.2C75.8405 106.698 74.7876 108.793 75.347 110.88C75.9063 112.967 77.8659 114.254 79.724 113.756Z" fill="#BCBEC0"></path><path d="M104.362 107.156C106.221 106.658 107.273 104.562 106.714 102.476C106.155 100.389 104.195 99.1011 102.337 99.5991C100.479 100.097 99.4261 102.193 99.9854 104.279C100.545 106.366 102.504 107.654 104.362 107.156Z" fill="#BCBEC0"></path><path d="M100.408 132.395L98.8857 132.805C91.4363 134.793 83.7315 130.644 81.2969 123.331L77.0935 110.694L80.5128 109.572L84.698 122.192C86.549 127.69 92.3481 130.817 97.9557 129.331L99.4784 128.921C104.539 127.562 107.539 122.365 106.18 117.304C106.135 117.122 106.08 116.949 106.016 116.775L101.794 104.074L105.214 102.952L109.435 115.636C111.706 122.502 107.986 129.905 101.12 132.185C100.883 132.258 100.646 132.331 100.408 132.395Z" fill="#BCBEC0"></path><path d="M49.5295 63.0152L88.8011 50.6693C98.1654 47.7241 108.15 52.9306 111.095 62.2948L125.073 106.736L51.8819 129.75L37.9039 85.3089C34.9587 75.9446 40.1652 65.9603 49.5295 63.0152Z" fill="#10B981"></path><path d="M64.4193 58.3376L100.235 47.0767C110.557 43.8307 121.553 49.566 124.799 59.8876L138.23 102.597L65.0394 125.611L51.6084 82.9017C48.3624 72.58 54.0976 61.5836 64.4193 58.3376Z" fill="#F37E7C"></path><path d="M89.5282 110.008C91.3863 109.51 92.4391 107.415 91.8798 105.328C91.3205 103.241 89.3608 101.954 87.5028 102.452C85.6447 102.95 84.5918 105.045 85.1512 107.132C85.7105 109.218 87.6702 110.506 89.5282 110.008Z" fill="black"></path><path d="M114.164 103.399C116.022 102.901 117.075 100.805 116.516 98.7186C115.957 96.6319 113.997 95.344 112.139 95.8421C110.281 96.3401 109.228 98.4354 109.787 100.522C110.346 102.609 112.306 103.897 114.164 103.399Z" fill="black"></path><path d="M110.201 128.638L108.678 129.048C101.229 131.036 93.5242 126.887 91.0897 119.575L86.8862 106.937L90.3055 105.815L94.4907 118.435C96.3417 123.933 102.141 127.061 107.748 125.574L109.271 125.164C114.332 123.805 117.332 118.608 115.973 113.548C115.927 113.365 115.873 113.192 115.809 113.019L111.587 100.317L115.006 99.1957L119.228 111.879C121.499 118.745 117.778 126.149 110.912 128.428C110.675 128.501 110.438 128.574 110.201 128.638Z" fill="black"></path><path d="M53.1403 14.6528C53.7968 14.1057 74.5222 0 74.5222 0L78.8715 21.6555L90.8071 14.3975L82.227 67.6471L75.1513 37.3204L60.2159 45.1254L53.1403 14.6528Z" fill="white"></path><path d="M103.472 4.32196L121.088 10.0755L95.6489 38.9342L103.472 4.32196Z" fill="white"></path></g><defs><clipPath id="clip0_3039_24342"><rect width="181.605" height="186" fill="white"></rect></clipPath></defs></svg>
+                </g>
+                <defs><clipPath id="clip0_3039_24342"><rect width="181.605" height="186" fill="white"></rect></clipPath></defs>
+            </svg>
+        </span>
+    </div>
+    <h1 class="font-bold text-2xl sm:text-3xl text-center mb-4">Your Cart is Empty</h1>
+    <p class="text-center text-base sm:text-lg">It feels too light! Go on and fill your stomach..</p>
+</div>
+`;
+    }
+    loadCartState();
+})
+
+let datafetched = false;
+    searchBar.addEventListener('input',()=>{
+        if (!datafetched && (!newdata || newdata.length === 0)) {
+        fetchdata();  
+        datafetched = true;
+    }
+        
+            let userInput = searchBar.value.trim();
+            if(userInput.length > 0){
+                let capitalized = userInput.charAt(0).toUpperCase() + userInput.slice(1);
+                 console.log(capitalized);
+                 searchBar.value = capitalized;
+                 let searchedCards = newdata.filter(item => item.name.startsWith(capitalized))
+                 if(searchedCards.length === 0){
+                     homepage.style.display = 'none'
+                     container.style.display = 'flex';
+                    container.innerHTML = `<div class ="w-1/2 sm:w-1/4 m-auto">
+                        <h1 class="m-auto sm:text-2xl text-sm ">NO SUCH ITEMS FOUND.. <span class="text-blue-300"> <i class="fa-solid fa-truck"></i></span> <h1>
+                        </div>
+                   `;
+                 }else{
+                 console.log(searchedCards)
+                 container.innerHTML = '';
+                 display(searchedCards)
+                 loadCartState();
+                 }
+
+            }else{
+                homepage.style.display = 'block'
+                container.style.display = 'none';
+                loadCartState();
+            } 
+        });
+
+ 
+
+      
+offerlink.addEventListener('click',()=>{
+    container.innerHTML ='';
+    let offerCards = newdata.filter(card => parseFloat(card.price) < 500);  
+    display(offerCards);
+    loadCartState();
+})
+
+
+
+const all = document.getElementById('all');
+
+all.addEventListener('click',()=>{
+    container.innerHTML= '';
+   display(newdata)
+    loadCartState();
+})
+
+const viewMore = document.getElementById('viewMore');
+viewMore.addEventListener('click',()=>{
+    display(newdata)
+    loadCartState();
+})
+
+
+
+container.addEventListener('click',(e)=>{
+
+if(e.target && e.target.classList.contains('addtocart')){
+const card = e.target.closest('.card')
+const cardName = card.dataset.name;
+console.log("CLICKED");
+
+if(e.target.innerText === "ADD"){
+e.target.innerText ="ADDED"
+e.target.style.color = "blue"
+e.target.classList.add('carted');
+cardState[cardName]="true"
+}else{
+    e.target.innerText ="ADD"
+    e.target.style.color = "red"
+    e.target.classList.remove('carted');
+    cardState[cardName]="false"
+    delete cardState[cardName]
+}
+localStorage.setItem('cartState', JSON.stringify(cardState));
+loadCartState();
+}
+})
+
+
+
+const navlinks = document.querySelectorAll('.navBar a');
+const checkBox = document.getElementById('check')
+   navlinks.forEach(link=>{
+    console.log('Link clicked');
+          link.addEventListener('click',()=>{
+            if(window.innerWidth <=630){
+                checkBox.checked = false;
+            }
+        })
+   })
+
+  
+
+
+const Words = ["Chicken", "Chocolate", "Ice Cream", "Pizza", "Burger"];
+let index = 0;
+let typeinterval ;
+
+    function typeText() {
+        searchBar.placeholder = `Search for "${Words[index]}" & more ....`;
+        index = (index+1) % Words.length;
+    }
+ setInterval(typeText,2000);
+
+const text2 = "From Our Kitchen to Your Table in Minutes";
+const titleText = document.getElementById("title-text");
+let index2 = 0;
+
+    function typeText2() {
+      if (index2 < text2.length) {
+        titleText.textContent += text2[index2];
+        index2++;
+        setTimeout(typeText2, 120); 
+      }
+    }
+
+ typeText2();
+
+const slides = document.getElementById('slides');
+
+const imagesArray = [
+               "./7975335.jpg",
+               "./7746386.jpg",
+               "./3075393.jpg",
+               "./7624812.jpg"
+]
+
+let currentIndex = 0;
+
+function loadImages(){
+       
+  slides.innerHTML = '';
+  let i ='';
+  i+= `<img class="slide rounded-lg" src="${imagesArray[currentIndex]}"/>`
+  slides.innerHTML = i;
+  currentIndex = (currentIndex + 1) % imagesArray.length;
+}
+
+loadImages();
+
+
+setInterval(loadImages,3000);
+
+
+const homelink = document.getElementById('homelink');
+homelink.addEventListener('click',()=>{
+    if(container.style.display !== 'none'){
+        container.style.display = 'none'
+        homepage.style.display = 'block'
+    }
+    if(window.innerWidth <=630){
+            checkBox.checked = false;
+       }
+})
+
+
+const icons = ['<i class="fa-solid fa-bomb"></i>','<i class="fa-solid fa-camera-retro"></i>','<i class="fa-solid fa-truck-fast"></i>','<i class="fa-solid fa-mug-hot"></i>','<i class="fa-solid fa-brush"></i>'];
+
+function loadData(fn){
+  homepage.style.display = 'none'
+  container.style.display='flex'
+  container.innerHTML = `
+  <div class="flex m-auto relative top-20">
+  <h1 class="fetchtext sm:text-4xl font-bold">FECTHING YOUR HUNGER</h1>
+  <div id="iconcontainer" class="ml-5 font-bold sm:text-3xl">${icons[0]}</div>
+  </div>`;
+
+  
+
+  let j = 0;
+  const iconContainer = document.getElementById('iconcontainer')
+
+  function icontext() { 
+            iconContainer.innerHTML=icons[j];
+            j = (j+1) % icons.length;
+    }
+
+  let iconsinterval =  setInterval(icontext,200); 
+
+ setTimeout(()=>{
+    clearInterval(iconsinterval);
+    fn()
+ },2000)
+}
+    </script>
+</body>
+</html>
+
+
